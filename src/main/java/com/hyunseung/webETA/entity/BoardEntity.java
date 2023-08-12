@@ -26,7 +26,6 @@ public class BoardEntity {
     private String boardContext;
     @ColumnDefault("0")
     private long boardClick;
-    @ColumnDefault("/Default")
     private String boardImage;
     private String boardWriterId;
     private String boardWriterNickname;
