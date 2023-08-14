@@ -58,6 +58,6 @@
 
 <!-- Stack Icon Refernces -->
 
-[sp]: /readme/figma.svg
-[ec2]: /readme/react.svg
-[pm]: /readme/.svg
+[sp]: /readme/spring.png
+[ec2]: /readme/EC2.png
+[pm]: /readme/postman.png
