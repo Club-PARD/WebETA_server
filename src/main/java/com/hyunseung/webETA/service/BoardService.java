@@ -1,16 +1,15 @@
 package com.hyunseung.webETA.service;
 
 import com.hyunseung.webETA.dto.BoardCreateDto;
+import com.hyunseung.webETA.dto.BoardLoginDto;
 import com.hyunseung.webETA.dto.ResponseDto;
 import com.hyunseung.webETA.entity.BoardEntity;
 import com.hyunseung.webETA.repository.BoardRepository;
-import com.hyunseung.webETA.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,11 +32,11 @@ public class BoardService {
             return ResponseDto.setFailed("DB Error");
         }
     }
-    public ResponseDto<List<BoardEntity>> getList(){
+    public ResponseDto<List<BoardEntity>> getList(String id){
         List<BoardEntity> boardList;
         try {
             Sort sort = Sort.by(Sort.Direction.DESC, "boardWriteDate"); //ASC 는 오름차순
-            boardList = boardRepository.findAll(sort);
+            boardList = boardRepository.findByBoardWriterId(id);
             return ResponseDto.setSuccess("Read Success!", boardList);
         }catch (Exception e){
             e.printStackTrace();
@@ -57,7 +56,7 @@ public class BoardService {
     public ResponseDto<List<BoardEntity>> getAllList(){
         List<BoardEntity> boardList;
         try{
-            boardList = boardRepository.findByOrderByBoardWriteDateDesc();
+            boardList = boardRepository.findByOrderByBoardClickDesc();
             return ResponseDto.setSuccess("성공", boardList);
         }catch(Exception e){
             e.printStackTrace();
@@ -89,7 +88,6 @@ public class BoardService {
                 if (dto.getBoardTitle() != null && !dto.getBoardTitle().isEmpty()) boardEntity.setBoardTitle(dto.getBoardTitle());
                 if (dto.getBoardDescription() != null && !dto.getBoardDescription().isEmpty()) boardEntity.setBoardDescription(dto.getBoardDescription());
                 if (dto.getBoardCategory() != null && !dto.getBoardCategory().isEmpty()) boardEntity.setBoardCategory(dto.getBoardCategory());
-                if (dto.getBoardContext() != null && !dto.getBoardContext().isEmpty()) boardEntity.setBoardContext(dto.getBoardContext());
                 if (dto.getBoardImage() != null && !dto.getBoardImage().isEmpty()) boardEntity.setBoardImage(dto.getBoardImage());
                 System.out.println("boardEntity.getBoardWriterId(): " + boardEntity.getBoardWriterId());
                 System.out.println("dto.getBoardWriterId(): " + dto.getBoardWriterId());
@@ -104,10 +102,11 @@ public class BoardService {
             return ResponseDto.setFailed("DB Error");
         }
     }
-    public ResponseDto<List<BoardEntity>> getLoginList(){
+    public ResponseDto<List<BoardEntity>> getLoginList(BoardLoginDto dto){
         List<BoardEntity> boardList;
+        String fanclub = dto.getBoardWriterFanclub();
         try{
-            boardList = boardRepository.findByOrderByBoardClickDesc();
+            boardList = boardRepository.findByBoardWriterFanclubOrderByBoardWriteDateDesc(fanclub);
             return ResponseDto.setSuccess("조회수로 배열",boardList);
         }catch (Exception e){
             e.printStackTrace();

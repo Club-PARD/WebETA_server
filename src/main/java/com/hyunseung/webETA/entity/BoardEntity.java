@@ -23,7 +23,7 @@ public class BoardEntity {
     private String boardTitle;
     private String boardDescription;
     private String boardCategory;
-    private String boardContext;
+    private String boardContext; //카카오 URL 디폴트값
     @ColumnDefault("0")
     private long boardClick;
     private String boardImage;
@@ -41,8 +41,8 @@ public class BoardEntity {
         this.boardTitle = dto.getBoardTitle();
         this.boardDescription = dto.getBoardDescription();
         this.boardCategory = dto.getBoardCategory();
-        this.boardContext = dto.getBoardContext();
         this.boardImage = dto.getBoardImage();
+        this.boardContext="https://open.kakao.com/o/gJaUOdBf";
         this.boardWriterId = dto.getBoardWriterId();
         this.boardWriterFanclub = dto.getBoardWriterFanclub();
         this.boardWriterNickname = dto.getBoardWriterNickname();

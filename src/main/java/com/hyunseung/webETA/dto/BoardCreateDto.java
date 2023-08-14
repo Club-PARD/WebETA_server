@@ -17,7 +17,6 @@ public class BoardCreateDto {
     private String boardTitle;
     private String boardDescription;
     private String boardCategory;
-    private String boardContext;
     private String boardImage;
     private String boardWriterId;
     private String boardWriterFanclub;

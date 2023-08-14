@@ -1,12 +1,12 @@
 package com.hyunseung.webETA.controller;
 
 import com.hyunseung.webETA.dto.BoardCreateDto;
+import com.hyunseung.webETA.dto.BoardLoginDto;
 import com.hyunseung.webETA.dto.ResponseDto;
 import com.hyunseung.webETA.entity.BoardEntity;
 import com.hyunseung.webETA.repository.BoardRepository;
 import com.hyunseung.webETA.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,8 +43,11 @@ public class BoardController {
         return boardService.updateBoard(id, requestBody);
     }
     @GetMapping("/loginList")
-    public ResponseDto<List<BoardEntity>>getLoginList(){
-        return boardService.getLoginList();
+    public ResponseDto<List<BoardEntity>>getLoginList(@RequestBody BoardLoginDto requestBody){
+        return boardService.getLoginList(requestBody);
     }
-
+    @GetMapping("/getList/{id}")
+    public ResponseDto<List<BoardEntity>> getList(@PathVariable("id") String id){
+        return boardService.getList(id);
+    }
 }

@@ -20,13 +20,11 @@ public class UserEntity {
     @Id
     private long userKakaoId;
     private String userKakaoNickname;
-    private int userAge;
     private String userFanclub;
     private String userImage;
     public UserEntity(SignUpDto dto){
         this.userKakaoId = dto.getUserKakaoId();
         this.userKakaoNickname = dto.getUserKakaoNickname();
-        this.userAge = dto.getUserAge ();
         this.userFanclub = dto.getUserFanclub();
         this.userImage = dto.getUserImage();
     }
