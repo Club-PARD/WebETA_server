@@ -271,7 +271,7 @@
 
 ```json
 {
-	보드 삭제 : api/board/delete/{id}(DELETE)
+	id : dataNoticeId
 }
 ```
 
