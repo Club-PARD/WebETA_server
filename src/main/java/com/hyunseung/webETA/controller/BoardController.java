@@ -42,9 +42,9 @@ public class BoardController {
     public ResponseDto<?> updateBoard(@PathVariable("id") Integer id, @RequestBody BoardCreateDto requestBody){
         return boardService.updateBoard(id, requestBody);
     }
-    @GetMapping("/loginList")
-    public ResponseDto<List<BoardEntity>>getLoginList(@RequestBody BoardLoginDto requestBody){
-        return boardService.getLoginList(requestBody);
+    @GetMapping("/loginList/{id}")
+    public ResponseDto<List<BoardEntity>>getLoginList(@PathVariable("id") String id){
+        return boardService.getLoginList(id);
     }
     @GetMapping("/getList/{id}")
     public ResponseDto<List<BoardEntity>> getList(@PathVariable("id") String id){
