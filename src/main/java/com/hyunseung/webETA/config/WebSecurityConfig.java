@@ -28,7 +28,7 @@ public class WebSecurityConfig {
                 // 세션 기반 인증 (현재는 Session 기반 인증을 사용하지 않기 때문에 상태를 없앰)
                 .sessionManagement((sessionManagement) ->sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // "/" "/api/auth" 모듈에 대해서는 모두 허용 (인증을 하지 않고 사용 가능하게 함)
-                .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.requestMatchers("/", "/api/user/**","/api/board/allList")
+                .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.requestMatchers("/", "/api/user/**","/api/board/allList", "/**")
                         //나머지 REquest에 대해서는 모두 인증된 사용자만 사용가능하게함
                         .permitAll().anyRequest().authenticated());
 

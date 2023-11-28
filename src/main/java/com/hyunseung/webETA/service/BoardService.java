@@ -102,8 +102,9 @@ public class BoardService {
             return ResponseDto.setFailed("DB Error");
         }
     }
-    public ResponseDto<List<BoardEntity>> getLoginList(String fanclub){
+    public ResponseDto<List<BoardEntity>> getLoginList(BoardLoginDto requestBody){
         List<BoardEntity> boardList;
+        String fanclub = requestBody.getBoardWriterFanclub();
         try{
             boardList = boardRepository.findByBoardWriterFanclubOrderByBoardWriteDateDesc(fanclub);
             return ResponseDto.setSuccess("조회수로 배열",boardList);
